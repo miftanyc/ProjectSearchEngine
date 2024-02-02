@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Search Engine Automation Suite">
+
+  <listeners>
+      <listener class-name = "com.searchengine.qa.listeners.MyListeners" />
+  </listeners>
+
+
+
+  <test name="Search Engine Test Cases">
+
+    <classes>
+
+      <class name="com.searchengine.qa.testcases.SearchEngine"/>
+
+    </classes>
+
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
