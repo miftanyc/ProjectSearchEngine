@@ -58,7 +58,7 @@ public class Base {
         boolean isHeadless = Boolean.parseBoolean(headlessValue);
 
         switch (browserName){
-            case "Chrome":
+            case "chrome":
                 if(isHeadless){
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--headless");
@@ -69,7 +69,7 @@ public class Base {
                     break;
                 }
 
-            case "Firefox":
+            case "firefox":
                 if(isHeadless){
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
                     firefoxOptions.addArguments("--headless");
@@ -80,7 +80,7 @@ public class Base {
                     break;
                 }
 
-            case "Edge":
+            case "edge":
                 if(isHeadless){
                     EdgeOptions edgeOptions = new EdgeOptions();
                     edgeOptions.addArguments("--headless");
@@ -90,6 +90,9 @@ public class Base {
                     driver = new EdgeDriver();
                     break;
                 }
+
+            default:
+                throw new IllegalArgumentException("Invalid Browser Name specified: " + browserName);
         }
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Utilities.IMPLICIT_WAIT_TIME));

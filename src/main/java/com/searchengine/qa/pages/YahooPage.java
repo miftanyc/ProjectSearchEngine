@@ -21,7 +21,7 @@ public class YahooPage {
     }
 
     //Object Binding
-    @FindBy(xpath = "//div[@id='main']/descendant::li/descendant::h3/descendant::a")
+    @FindBy(xpath = "//div[@id='main']/descendant::li/descendant::h3/descendant::a[@aria-label]")
     private WebElement titleOfSearchResults;
 
 

@@ -10,9 +10,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class searchEngineTest extends Base {
+public class SearchEngineTest extends Base {
 
-    public searchEngineTest(){
+    public SearchEngineTest(){
         super();
     }
 
@@ -32,7 +32,7 @@ public class searchEngineTest extends Base {
     public void searchInSearchEngine(String searchWord){
 
         StringBuilder sb = null;
-        switch (prop.getProperty("searchengine")){
+        switch (prop.getProperty("searchEngine")){
             case "google":
                 googlePage = new GooglePage(driver);
                 driver.get(prop.getProperty("googlePage")+searchWord);
@@ -48,7 +48,7 @@ public class searchEngineTest extends Base {
                 break;
 
             default:
-                throw new IllegalArgumentException("Invalid search engine specified: " + prop.getProperty("searchengine"));
+                throw new IllegalArgumentException("Invalid search engine specified: " + prop.getProperty("searchEngine"));
         }
 
         try {

@@ -62,20 +62,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 			jsExecutor.executeScript("arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});", waitForVisibilityOfElement(element, Utilities.EXPLICIT_WAIT_TIME));
 		}
 
-		public Properties propLoad(){
-			Properties prop = new Properties();
-			File propFile = new File(System.getProperty("user.dir")+"/src/main/java/com/searchengine/qa/config/config.properties");
-
-			try {
-				FileInputStream propfis = new FileInputStream(propFile);
-				prop.load(propfis);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			return prop;
-		}
-
 	}
 	
 	

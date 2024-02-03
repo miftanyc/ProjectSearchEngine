@@ -17,12 +17,12 @@ import com.aventstack.extentreports.Status;
 import com.searchengine.qa.utils.ExtentReporter;
 import com.searchengine.qa.utils.Utilities;
 
-	public class MyListeners implements ITestListener{
+public class MyListeners implements ITestListener{
 		
 		ExtentReports extentReport;
 		ExtentTest extentTest;
 		String testName;
-		String testId;
+		String testData;
 
 		@Override
 		public void onStart(ITestContext context) {
@@ -35,7 +35,7 @@ import com.searchengine.qa.utils.Utilities;
 		public void onTestStart(ITestResult result) {
 			
 			testName = result.getName();
-			testId = result.id();
+			testData = result.getParameters()[0].toString();
 			extentTest = extentReport.createTest(testName);
 			extentTest.log(Status.INFO, testName+" started executing");
 		
@@ -59,7 +59,7 @@ import com.searchengine.qa.utils.Utilities;
 			}
 			
 			//Screenshot Method to call
-			String destinationScreenshotPath = Utilities.captureScreenshot(driver, testName+"-"+testId);
+			String destinationScreenshotPath = Utilities.captureScreenshot(driver, testName+"-"+ testData);
 			
 			extentTest.addScreenCaptureFromPath(destinationScreenshotPath);
 			extentTest.log(Status.INFO, result.getThrowable());
