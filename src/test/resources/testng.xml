@@ -12,7 +12,7 @@
 
     <classes>
 
-      <class name="com.searchengine.qa.testcases.SearchEngine"/>
+      <class name="com.searchengine.qa.testcases.searchEngineTest"/>
 
     </classes>
 

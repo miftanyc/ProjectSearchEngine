@@ -36,23 +36,5 @@ public class YahooPage {
         elementUtils.scrollIntoViewElement(titleOfSearchResults);
     }
 
-    public void assertYahooSearchResult(String searchWord){
-
-        Properties prop = elementUtils.propLoad();
-        driver.get(prop.getProperty("yahooPage")+searchWord);
-        String firstElementText = getTextOfFirstElement();
-        scrollIntoViewFirstElement();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        System.out.println("Given Data: "+searchWord.toLowerCase());
-        System.out.println("First Element Text Content: "+firstElementText.toLowerCase());
-
-        Assert.assertTrue(firstElementText.toLowerCase().contains(searchWord.toLowerCase()), "Text content does not contain "+searchWord);
-    }
 
 }

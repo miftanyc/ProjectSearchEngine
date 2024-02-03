@@ -4,14 +4,15 @@ import com.searchengine.qa.base.Base;
 import com.searchengine.qa.pages.GooglePage;
 import com.searchengine.qa.pages.YahooPage;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class SearchEngine extends Base {
+public class searchEngineTest extends Base {
 
-    public SearchEngine(){
+    public searchEngineTest(){
         super();
     }
 
@@ -25,28 +26,40 @@ public class SearchEngine extends Base {
 
     }
 
-    @Test(dataProvider = "Search Word Provider")
 
-//  switch (){
-//        case "Chrome":
-//
-//    }
+    @Test(dataProvider = "Search Word Provider")
 
     public void searchInSearchEngine(String searchWord){
 
-        ;
+        StringBuilder sb = null;
         switch (prop.getProperty("searchengine")){
             case "google":
                 googlePage = new GooglePage(driver);
-                googlePage.assertGoogleSearchResult(searchWord);
+                driver.get(prop.getProperty("googlePage")+searchWord);
+                sb = new StringBuilder(googlePage.getTextOfFirstElement());
+                googlePage.scrollIntoViewFirstElement();
                 break;
+
             case "yahoo":
                 yahooPage = new YahooPage(driver);
-                yahooPage.assertYahooSearchResult(searchWord);
+                driver.get(prop.getProperty("yahooPage")+searchWord);
+                sb = new StringBuilder(yahooPage.getTextOfFirstElement());
+                yahooPage.scrollIntoViewFirstElement();
                 break;
+
             default:
                 throw new IllegalArgumentException("Invalid search engine specified: " + prop.getProperty("searchengine"));
         }
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Given Data: "+searchWord.toLowerCase());
+        System.out.println("First Element Text Content: "+sb.toString().toLowerCase());
+        Assert.assertTrue(sb.toString().toLowerCase().contains(searchWord.toLowerCase()), "Text content does not contain "+searchWord);
 
     }
 
@@ -61,6 +74,7 @@ public class SearchEngine extends Base {
         };
 
     }
+
 
     @AfterMethod
     public void tearDown(){

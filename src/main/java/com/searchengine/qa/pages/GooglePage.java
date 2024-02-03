@@ -38,22 +38,4 @@ public class GooglePage {
         elementUtils.scrollIntoViewElement(titleOfSearchResults);
     }
 
-    public void assertGoogleSearchResult(String searchWord){
-
-        Properties prop = elementUtils.propLoad();
-        driver.get(prop.getProperty("googlePage")+searchWord);
-        String firstElementText = getTextOfFirstElement();
-        scrollIntoViewFirstElement();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        System.out.println("Given Data: "+searchWord.toLowerCase());
-        System.out.println("First Element Text Content: "+firstElementText.toLowerCase());
-
-        Assert.assertTrue(firstElementText.toLowerCase().contains(searchWord.toLowerCase()), "Text content does not contain "+searchWord);
-    }
 }
